@@ -1,3 +1,8 @@
 import { Routes } from '@angular/router';
 
-export const routes: Routes = [];
+import { RotasComponent } from './components/rotas/rotas.component';
+
+export const routes: Routes = [
+    { path: '', },
+    {path :'nova-rota', component: RotasComponent}
+];
