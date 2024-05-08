@@ -1,0 +1,33 @@
+[
+    {
+      "id": "1",
+      "nome": "Fornecedor A",
+      "endereco": "Rua A, 123",
+      "telefone": "(00) 1234-5678"
+    },
+    {
+      "id": "2",
+      "nome": "Fornecedor B",
+      "endereco": "Avenida B, 456",
+      "telefone": "(00) 2345-6789"
+    },
+    {
+      "id": "3",
+      "nome": "Fornecedor C",
+      "endereco": "Praça C, 789",
+      "telefone": "(00) 3456-7890"
+    },
+    {
+      "id": "4",
+      "nome": "Fornecedor D",
+      "endereco": "Rua D, 987",
+      "telefone": "(00) 4567-8901"
+    },
+    {
+      "id": "5",
+      "nome": "Fornecedor E",
+      "endereco": "Avenida E, 654",
+      "telefone": "(00) 5678-9012"
+    }
+  ]
+  
