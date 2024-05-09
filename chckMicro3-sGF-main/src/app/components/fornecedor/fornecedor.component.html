@@ -1,0 +1,16 @@
+<form [formGroup]="fornecedorForm" (ngSubmit)="addNovoFornecedor()">
+  <p>
+    id: <input type="text" formControlName="id">
+  </p>  
+  <p>
+      Nome: <input type="text" formControlName="nome" />
+    </p>
+    <p>
+      endereco: <input type="text" formControlName="endereco">
+    </p>
+    <p>
+      Telefone: <input type="text" formControlName="telefone" />
+    </p>
+    <button type="submit">Enviar</button>
+  
+  </form>
