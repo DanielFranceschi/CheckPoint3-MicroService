@@ -1,9 +1,10 @@
 import { Routes } from '@angular/router';
-import { RotasComponent } from './components/rotas/rotas.component';
-import { FornecedorService } from './services/fornecedor.service';
 import { FornecedorComponent } from './components/fornecedor/fornecedor.component';
+import  {FornecedorDetailComponent} from './components/fornecedor-detail/fornecedor-detail.component';
+
 
 export const routes: Routes = [
-    { path: '', component: FornecedorComponent},
+    { path: 'fornecedor', component: FornecedorComponent},
+    { path: 'fornecedor/:id', component: FornecedorDetailComponent}
     
 ];

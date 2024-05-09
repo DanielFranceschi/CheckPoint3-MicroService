@@ -6,38 +6,38 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
+
+
 export class FornecedorService {
   private fornecedorUrl = "http://localhost:3000/fornecedor"
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient){}
 
+  httpHeader = {
+    headers:{
+      "Content-Type":"Application/json"
+    }
   }
-
-  fornecedores: Fornecedor[]= []
-
-  listar(): Observable<Fornecedor[]>{ 
+  list(): Observable<Fornecedor[]>{ 
     return this.http.get<Fornecedor[]>(this.fornecedorUrl) as Observable<Fornecedor[]>
   }
-  remover(id: string){
-    const fornecedor = this.fornecedores.find(f => f.id == id)
-    if (fornecedor) {
-      const index = this.fornecedores.indexOf(fornecedor)
-      this.fornecedores.splice(index, 1)      
-    }
+
+  getById(id: string): Observable<Fornecedor> {
+    console.log(`${this.fornecedorUrl}/${id}`);
+    return this.http.get<Fornecedor>(`${this.fornecedorUrl}/${id}`) as Observable<Fornecedor>;
   }
 
-  adicionar(fornecedor:Fornecedor){
-    const httpHeader={
-      headers:{
-        "Content-Type" : "application/json"
-      }
-      
-    }
-    return this.http.post(this.fornecedorUrl, fornecedor, httpHeader)
+  remove(id: string){
+    console.log(`${this.fornecedorUrl}/${id}`)
+      return this.http.delete(`${this.fornecedorUrl}/${id}`);
   }
 
-  add(fornecedor : Fornecedor){
-    this.fornecedores.push(fornecedor)
+  add(fornecedor:Fornecedor){
+    return this.http.post(this.fornecedorUrl, fornecedor, this.httpHeader)
   }
+
+  update(fornecedor: Fornecedor) {
+    return this.http.put(`${this.fornecedorUrl}/${fornecedor.id}`, fornecedor, this.httpHeader)
+  }
+
 
 }
- 

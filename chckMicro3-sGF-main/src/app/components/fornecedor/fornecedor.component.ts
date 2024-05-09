@@ -12,9 +12,8 @@ import { FornecedorService } from '../../services/fornecedor.service';
   styleUrl: './fornecedor.component.css'
 })
 export class FornecedorComponent {
-  fornecedores:Fornecedor[] = []
-
   fornecedorForm: FormGroup = new FormGroup({});
+  fornecedores:Fornecedor[] = []
 
   constructor(private fornecedorService: FornecedorService, private formBuilder: FormBuilder){
     this.fornecedorForm = this.formBuilder.group({
@@ -34,29 +33,32 @@ export class FornecedorComponent {
     return result;
   }
 
-  inserir() {
+  insert() {
     if (this.fornecedorForm.valid) {
-      const fornecedorNovo: Fornecedor = {
+      const fornecedorAdd: Fornecedor = {
+        id: this.generateRandomString(6),
         nome: this.fornecedorForm.value.nome,
         telefone: this.fornecedorForm.value.telefone,
-        id: this.generateRandomString(6),
-        endereco: this.fornecedorForm.value.endereco
+        endereco: this.fornecedorForm.value.endereco,
       }
+      this.fornecedores.push(fornecedorAdd)
       this.fornecedorForm.reset();
-      this.fornecedorService.add(fornecedorNovo);
+      this.fornecedorService.add(fornecedorAdd).subscribe;
       alert("Cadastro Completo")
     }
   }
-  listar(): void {
-    this.fornecedorService.listar().subscribe((item)=>(this.fornecedores=item));
-  }
-
-  remover(id: string): void {
-    this.fornecedorService.remover(id);
-    alert("Removido com sucesso!");
+  list(): void {
+    this.fornecedorService.list().subscribe((fornecedores)=>(this.fornecedores=fornecedores));
   }
 
   ngOnInit(): void {
-    this.listar();
+    this.list();
   }
+
+  remover(id: string): void {
+     this.fornecedores = this.fornecedores.filter((c) => c.id !== id);
+    this.fornecedorService.remove(id).subscribe();
+    alert('Removido com sucesso!')
+  }
+  
 }
